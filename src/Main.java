@@ -1,35 +1,17 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        MenuOperacao menuOperacao = new MenuOperacao();
+        EntradaDados entradaDados = new EntradaDados();
         OperacaoMatematica op = new OperacaoMatematica();
         List<String> historico = new ArrayList<>();
         int operacao;
 
         do {
-            System.out.println("\n===============================");
-            System.out.println("      🧮 CALCULADORA JAVA      ");
-            System.out.println("===============================");
-            System.out.println("1 ➤ Adição");
-            System.out.println("2 ➤ Subtração");
-            System.out.println("3 ➤ Multiplicação");
-            System.out.println("4 ➤ Divisão");
-            System.out.println("5 ➤ Histórico");
-            System.out.println("0 ➤ Sair");
-            System.out.print("\nEscolha uma operação: ");
-
-            try {
-                operacao = sc.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("\n❌ Entrada inválida! Digite apenas números.");
-                sc.next(); // limpa o buffer
-                continue;
-            }
+            operacao = menuOperacao.exibirMenuOperacao();
 
             if (operacao == 0) {
                 System.out.println("\nEncerrando o programa... 👋");
@@ -53,8 +35,8 @@ public class Main {
 
             // Solicita os números
             System.out.println("\n===== OPERAÇÃO MATEMÁTICA =====");
-            double num1 = lerNumero(sc, "Digite o primeiro número: ");
-            double num2 = lerNumero(sc, "Digite o segundo número: ");
+            double num1 = entradaDados.lerNumero( "Digite o primeiro número: ");
+            double num2 = entradaDados.lerNumero("Digite o segundo número: ");
 
             try {
                 double resultado = switch (operacao) {
@@ -82,21 +64,5 @@ public class Main {
                 System.out.println("\n❌ " + e.getMessage());
             }
         } while (true);
-
-        sc.close();
-    }
-
-    // 🔹 Metodo auxiliar para ler número com validação
-    private static double lerNumero(Scanner sc, String mensagem) {
-        while (true) {
-            System.out.print(mensagem);
-            try {
-                return sc.nextDouble();
-            } catch (InputMismatchException e) {
-                System.out.println("❌ Valor inválido! Digite um número válido.");
-                sc.next(); // limpa o buffer
-            }
-
-        }
     }
 }
