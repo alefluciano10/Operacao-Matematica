@@ -7,7 +7,8 @@ public class Main {
         MenuOperacao menuOperacao = new MenuOperacao();
         EntradaDados entradaDados = new EntradaDados();
         OperacaoMatematica op = new OperacaoMatematica();
-        List<String> historico = new ArrayList<>();
+        Historico registros = new Historico();
+
         int operacao;
 
         do {
@@ -19,12 +20,7 @@ public class Main {
             }
 
             if (operacao == 5) {
-                if (historico.isEmpty()) {
-                    System.out.println("\n📄 Nenhuma operação realizada ainda.");
-                } else {
-                    System.out.println("\n===== HISTÓRICO =====");
-                    historico.forEach(System.out::println);
-                }
+               registros.exibirRegistros();
                 continue;
             }
 
@@ -55,9 +51,7 @@ public class Main {
                     default -> "";
                 };
 
-                String registro = String.format("%.2f %s %.2f = %.2f", num1, simbolo, num2, resultado);
-                historico.add(registro);
-
+                registros.registrar(num1, num2, simbolo, resultado);
                 System.out.printf("\n✅ Resultado: %.2f%n", resultado);
 
             } catch (IllegalArgumentException e) {
