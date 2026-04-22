@@ -3,7 +3,11 @@ import java.util.Scanner;
 
 public class EntradaDados {
 
-    private final Scanner leitura = new Scanner(System.in);
+    private final Scanner leitura;
+
+    public EntradaDados(Scanner leitura) {
+        this.leitura = leitura;
+    }
 
     public double lerNumero( String mensagem) {
         while (true) {
