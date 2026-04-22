@@ -1,9 +1,12 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuOperacao {
 
-    private final Scanner ler = new Scanner(System.in);
+    private final Scanner leitura;
+
+    public MenuOperacao(Scanner leitura) {
+        this.leitura = leitura;
+    }
 
     public int exibirMenuOperacao() {
         while (true) {
@@ -18,12 +21,10 @@ public class MenuOperacao {
             System.out.println("0 ➤ Sair");
             System.out.print("\nEscolha uma operação: ");
 
-            String input = ler.nextLine(); // Lê como String
             try {
-                int operacao = Integer.parseInt(input); // Converte para inteiro
-                return  operacao;
+                return Integer.parseInt(leitura.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("\n❌ Entrada inválida! Digite apenas números.");
+                System.out.println("\n❌ Entrada inválida! Digite apenas números!");
             }
         }
     }

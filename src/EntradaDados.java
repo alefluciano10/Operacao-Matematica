@@ -13,7 +13,9 @@ public class EntradaDados {
         while (true) {
             System.out.print(mensagem);
             try {
-                return leitura.nextDouble();
+                double numero = leitura.nextDouble();
+                leitura.nextLine(); // 👈 Consome o ENTER aqui
+                return numero;
             } catch (InputMismatchException e) {
                 System.out.println("\n❌ Valor inválido! Digite um número válido.\n");
                 leitura.next(); // limpa o buffer

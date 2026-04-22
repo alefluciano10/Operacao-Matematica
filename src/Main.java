@@ -6,10 +6,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MenuOperacao menuOperacao = new MenuOperacao();
+        MenuOperacao menuOperacao = new MenuOperacao(leitura);
         EntradaDados entradaDados = new EntradaDados(leitura);
         OperacaoMatematica op = new OperacaoMatematica();
-        Historico registros = new Historico();
+        Historico registros = new Historico(leitura);
 
         int operacao;
 
